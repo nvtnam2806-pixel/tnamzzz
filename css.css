@@ -1,0 +1,201 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #030208;
+  font-family: "Quicksand", sans-serif;
+  touch-action: none;
+}
+
+#webgl-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.top-bar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffd700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 215, 0, 0.3);
+}
+
+.wish-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 20px;
+}
+
+.wish-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.wish-card {
+  background: linear-gradient(
+    135deg,
+    rgba(35, 15, 45, 0.95),
+    rgba(15, 8, 25, 0.98)
+  );
+  border: 1.5px solid rgba(255, 215, 0, 0.5);
+  box-shadow:
+    0 0 35px rgba(255, 182, 193, 0.3),
+    inset 0 0 15px rgba(255, 215, 0, 0.2);
+  border-radius: 24px;
+  padding: 28px 20px 24px 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  transform: translateY(30px) scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: #fff;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.wish-modal.active .wish-card {
+  transform: translateY(0) scale(1);
+}
+
+.wish-card .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.wish-card .close-btn:hover,
+.wish-card .close-btn:active {
+  background: rgba(255, 77, 109, 0.8);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.wish-card h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 28px;
+  color: #ffd700;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.wish-image-container {
+  width: 100%;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 12px 0 16px 0;
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+.wish-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.wish-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #f0e6ff;
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.wish-card .tag {
+  font-size: 12px;
+  color: #ff9ebb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.click-hint {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: rgba(255, 235, 205, 0.75);
+  font-size: 13px;
+  letter-spacing: 1px;
+  pointer-events: none;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  animation: pulseHint 2s infinite alternate;
+  text-align: center;
+  width: 90%;
+}
+
+@keyframes pulseHint {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.95;
+  }
+}
